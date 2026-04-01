@@ -93,11 +93,11 @@ Work-case 6
 
 
 Результат (як видно на моєму скріншоті): Система підтвердила успішне створення всіх п'яти записів із відповідними шляхами до оболонок у кінці кожного рядка:
-
+```
 * ...:/bin/sh (для розробників та засновників)  
 * ...:/usr/sbin/nologin (для фінансистів та гостей)  
 * ...:/bin/bash (для техпідтримки)
-
+```
 **Завдання 4:**
 
 1️. Підготовка користувачів та груп
@@ -107,7 +107,7 @@ Work-case 6
 Теоретично, для цього використовуються такі команди:
 
 \# Створення груп
-
+```
 sudo groupadd tech
 
 sudo groupadd dev
@@ -117,15 +117,15 @@ sudo groupadd fin
 sudo groupadd founders
 
 sudo groupadd guests
-
+```
 \# Встановлення shell для альтернативних командних інтерпретаторів
-
+```
 sudo dnf install zsh \-y
 
 sudo dnf install fish \-y
-
+```
 \# Створення користувачів
-
+```
 sudo useradd \-m \-g tech \-s /bin/bash tech1
 
 sudo passwd tech1
@@ -145,7 +145,7 @@ sudo passwd fin1
 sudo useradd \-m \-g guests \-s /sbin/nologin guest1
 
 sudo passwd guest1
-
+```
 Пояснення:
 
 | Група | Користувачі | Shell / доступ |
@@ -161,7 +161,7 @@ sudo passwd guest1
 Демонстрація роботи з користувачами
 
 Я спробувала увійти під користувачем tech1 командою:
-
+```
 su \- tech1
 
 echo $SHELL
@@ -173,7 +173,7 @@ pwd
 date
 
 uname \-a
-
+```
 Результат у терміналі:
 <img width="771" height="283" alt="image" src="https://github.com/user-attachments/assets/64e8e849-65e7-4eec-ae1e-c396683f28de" />
 
@@ -187,7 +187,7 @@ uname \-a
 * uname \-a показує повну інформацію про ядро Linux та систему.
 
 Далі я перевірила доступ через root-користувача admin1:
-
+```
 sudo su \- admin1
 
 echo $SHELL whoami
@@ -195,7 +195,7 @@ echo $SHELL whoami
 pwd date
 
 exit
-
+```
 Результат у терміналі:
 
 <img width="504" height="102" alt="image" src="https://github.com/user-attachments/assets/4438ed81-f3d2-4021-9b25-17223b193ffa" />
@@ -217,7 +217,7 @@ exit
 3\. Демонстрація роботи з користувачем founder1
 
 Я спробувала увійти під користувачем founder1 командою:
-
+```
 su \- founder1
 
 echo $SHELL
@@ -229,7 +229,7 @@ pwd
 date
 
 uname \-r
-
+```
 Результат у терміналі:
 
 <img width="746" height="270" alt="image" src="https://github.com/user-attachments/assets/cb6f22ed-4b78-48a7-a1b2-3c2ce04549dd" />
@@ -259,9 +259,9 @@ uname \-r
 Financiers (немає shell)
 
 Команда:
-
+```
 su \- fin1
-
+```
 Очікуваний результат у терміналі:
 
 This account is currently not available
@@ -278,17 +278,17 @@ This account is currently not available
 Guests (немає shell)
 
 Команда:
-
+```
 su \- guest1
-
+```
 Очікуваний результат у терміналі:
-
+```
 su: Authentication failure
-
+```
 або
-
+```
 This account is currently not available
-
+```
 Опис:
 
 <img width="418" height="72" alt="image" src="https://github.com/user-attachments/assets/ec28d3b1-93d9-46d8-8e3d-87683ca37743" />
